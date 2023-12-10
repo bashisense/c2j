@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/base64-bin.dir/bin/base64.c.o -o bin/base64  libbase64.a 

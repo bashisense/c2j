@@ -1,0 +1,37 @@
+{
+    "__desc":"copy to header of header file",
+    "__file":"exam",
+    "__prefix":"exam_",
+    "__include":[
+        "list.h",
+        "cJSON.h"
+    ],
+    "__sysinclude":[
+        "stdio.h",
+        "string.h",
+        "stdbool.h"
+    ],
+
+    "substruct":{
+        "node":"struct list_head",
+        "type_double":"double",
+        "type_string":"string"
+    },
+
+    "example":{
+        "type_bool":"bool",
+        "type_int":"int",
+        "type_double":"double",
+        "type_string":"string",
+        "type_binary":"binary",
+
+        "type_object":"struct substruct",
+        "type_list":["struct substruct"]
+    }
+}
+
+
+export http_proxy="http://172.16.106.1:8001"; export HTTP_PROXY="http://172.16.106.1:8001"; export https_proxy="http://172.16.106.1:8001"; export HTTPS_PROXY="http://172.16.106.1:8001"
+
+
+
