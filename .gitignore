@@ -1,6 +1,8 @@
 # Prerequisites
 *.d
 
+outs/
+
 # Object files
 *.o
 *.ko

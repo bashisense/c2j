@@ -29,9 +29,3 @@
         "type_list":["struct substruct"]
     }
 }
-
-
-export http_proxy="http://172.16.106.1:8001"; export HTTP_PROXY="http://172.16.106.1:8001"; export https_proxy="http://172.16.106.1:8001"; export HTTPS_PROXY="http://172.16.106.1:8001"
-
-
-

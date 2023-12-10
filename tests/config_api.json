@@ -1,0 +1,53 @@
+{
+    "__desc":"copy to header of header file",
+    "__file":"c2jexam",
+    "__prefix":"c2j_",
+    "__include":[
+        "mydefine.h",
+        "yourdefine.h"
+    ],
+    "__sysinclude":[
+        "stdio.h",
+        "string.h"
+    ],
+
+    "listnode":{
+        "node":"struct list_head",
+        "id":"string",
+        "param":"binary",
+        "width":"int",
+        "height":"int"
+    },
+
+    "substruct":{
+        "type_int":"int",
+        "type_float":"double"
+    },
+
+    "example":{
+        "type_int":"int",
+        "type_float":"double",
+
+        "type_list":["struct list_head"],
+
+        "sub":"struct substruct"
+    },
+
+    "ipv4_param":{
+        "ip:":"string 192.168.20.10",
+        "mask":"string 255.255.255.0",
+        "gateway":"string 192.168.20.1",
+        "dns":"string 8.8.8.8"
+    },
+
+    "ether_config_req":{
+        "interface":"string eth0",
+        "type":"string static",
+        "ipv4":"struct ipv4_param"
+    },
+
+    "ether_config_rsp":{
+        "code":"int",
+        "message":"string ok"
+    }
+}

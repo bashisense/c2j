@@ -1,9 +1,11 @@
-
+#!/usr/bin/env node
 
 const fs = require('fs');
 const proc = require('process');
 
 var kPrefix = "c2j_";
+var kDefaultOutDir = "outs";
+
 const kSourceTemplate = `
 static int j2c_bool_cjs(cJSON *cjs, const char *item, bool *out){
     cJSON *cjs_item = NULL;
@@ -682,7 +684,7 @@ extern \"C\" {\n\
 \n\
 #endif\n\n";
 
-    fs.writeFileSync(outfile + '_c2j_out.h', c_header, {encoding:'utf8',flush:true,flag:'w'})
+    fs.writeFileSync(kDefaultOutDir + outfile + '_c2j_out.h', c_header, {encoding:'utf8',flush:true,flag:'w'})
 }
 
 function c2j_gen_source_file(jobj){
@@ -734,18 +736,40 @@ function c2j_gen_source_file(jobj){
         c_source += src_gen.c2j_str;
     }
 
-    fs.writeFileSync(outfile + '_c2j_out.c', c_source, {encoding:'utf8',flush:true,flag:'w'})
+    fs.writeFileSync(kDefaultOutDir + outfile + '_c2j_out.c', c_source, {encoding:'utf8',flush:true,flag:'w'})
 }
 
 function c2j_gen_hook(){
-    fs.writeFileSync('c2j_hook.h', kHookHeader, {encoding:'utf8',flush:true,flag:'w'})
+    fs.writeFileSync(kDefaultOutDir + 'c2j_hook.h', kHookHeader, {encoding:'utf8',flush:true,flag:'w'})
 
-    if(!fs.existsSync('c2j_hook.c'))
-        fs.writeFileSync('c2j_hook.c', kHookSource, {encoding:'utf8',flush:true,flag:'wx+'})
+    if(!fs.existsSync(kDefaultOutDir + 'c2j_hook.c'))
+        fs.writeFileSync(kDefaultOutDir + 'c2j_hook.c', kHookSource, {encoding:'utf8',flush:true,flag:'wx+'})
 }
 
-const jobj = load_json("example.json")
 
+var inFile = proc.argv[2];
+var outDir = proc.argv[3];
+var help = false;
+
+if(inFile == null){
+    help = true;
+}
+
+if(outDir == null){
+    help = true;
+}
+
+if(help){
+    console.log("Usage: ./c2js api.json outdir");
+    proc.exit(0);
+}
+
+kDefaultOutDir = outDir + '/';
+if(!fs.existsSync(kDefaultOutDir))
+    fs.mkdirSync(kDefaultOutDir)
+
+const jobj = load_json(inFile)
 c2j_gen_header_file(jobj);
 c2j_gen_source_file(jobj);
 c2j_gen_hook();
+
